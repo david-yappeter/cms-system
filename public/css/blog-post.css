@@ -1,0 +1,13 @@
+.nav-link {
+    cursor: pointer;
+}
+
+.card-img-top {
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.no-underline {
+    text-decoration: none !important;
+    cursor: pointer;
+}
