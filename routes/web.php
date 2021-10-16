@@ -29,4 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/posts/{id}/edit', [App\Http\Controllers\AdminController::class, 'edit'])->middleware('can:view,post')->name('admin.post.edit');    
     Route::patch('/admin/posts/{post}', [App\Http\Controllers\AdminController::class, 'patch'])->middleware('can:update,post')->name('admin.post.patch');    
     Route::delete('/admin/posts/{post}', [App\Http\Controllers\AdminController::class, 'delete'])->middleware('can:delete,post')->name('admin.post.delete');    
+
+    Route::get('/admin/users/{user}/profile', [App\Http\Controllers\UserController::class, 'profile'])->middleware('can:view,user')->name('admin.user.profile');
+    Route::patch('/admin/users/{user}/profile', [App\Http\Controllers\UserController::class, 'patch'])->middleware('can:update,user')->name('admin.user.profile.patch');
 });

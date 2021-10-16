@@ -45,4 +45,21 @@ class User extends Authenticatable
     public function posts() {
         return $this->hasMany(\App\Models\Post::class);
     }
+
+    public function roles() {
+        return $this->belongsToMany(\App\Models\Role::class);
+    }
+
+    public function permissions() {
+        return $this->belongsToMany(\App\Models\Permission::class);
+    }
+
+    public function hasRole($role_name) {
+        foreach($this->roles as $role) {
+            if($role->slug == $role_name) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
