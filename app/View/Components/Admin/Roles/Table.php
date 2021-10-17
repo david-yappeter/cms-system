@@ -1,19 +1,21 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Admin\Roles;
 
 use Illuminate\View\Component;
 
-class AdminSidebar extends Component
+class Table extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public $roles;
+    
+    public function __construct($roles)
     {
-        //
+        $this->roles = $roles;
     }
 
     /**
@@ -23,6 +25,6 @@ class AdminSidebar extends Component
      */
     public function render()
     {
-        return view('components.admin.sidebar.index');
+        return view('components.admin.roles.table');
     }
 }

@@ -26,4 +26,6 @@
         <input disabled type="text" name="name" id="name" class="form-control" placeholder="Email . . ."  value={{ $user->email }}>
     </div>
 </div>
+
+<x-admin.user.roles.table :user="$user" :roles="$roles"></x-admin.user.roles.table>
 @endsection

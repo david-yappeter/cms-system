@@ -19,9 +19,9 @@
 <body>
   
   <div class="d-flex position-absolute" style="width: 100vw; height: 100vh">
-      <x-admin-sidebar />
+    <x-admin.sidebar.index />
       <div class="w-100">     
-        <x-admin-navbar-2 />
+        <x-admin.navbar.index />
         @yield("content")
       </div>
   </div>

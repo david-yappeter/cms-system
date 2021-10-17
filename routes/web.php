@@ -30,6 +30,13 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/admin/posts/{post}', [App\Http\Controllers\AdminController::class, 'patch'])->middleware('can:update,post')->name('admin.post.patch');    
     Route::delete('/admin/posts/{post}', [App\Http\Controllers\AdminController::class, 'delete'])->middleware('can:delete,post')->name('admin.post.delete');    
 
+    Route::delete('/admin/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('admin.users.destroy');
     Route::get('/admin/users/{user}/profile', [App\Http\Controllers\UserController::class, 'profile'])->middleware('can:view,user')->name('admin.user.profile');
     Route::patch('/admin/users/{user}/profile', [App\Http\Controllers\UserController::class, 'patch'])->middleware('can:update,user')->name('admin.user.profile.patch');
+    Route::put('/admin/users/{user}/{role}/attach', [App\Http\Controllers\UserController::class, 'attach'])->name('admin.users.role.attach');
+    Route::put('/admin/users/{user}/{role}/detach', [App\Http\Controllers\UserController::class, 'detach'])->name('admin.users.role.detach');
+    Route::get('/admin/users', [App\Http\Controllers\UserController::class, 'index'])->name('admin.users');
+});
+
+Route::middleware(['role:admin'])->group(function () {
 });
