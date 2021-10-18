@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,8 @@ class RoleController extends Controller
     }
 
     public function show(Role $role) {
-        return view("admin.roles.show", ['role'=>$role, 'users' => $role->users]);
+        $permissions = Permission::all();
+        return view("admin.roles.show", ['role'=>$role, 'users' => $role->users, 'permissions'=>$permissions]);
     }
 
     public function create() {
@@ -46,6 +48,22 @@ class RoleController extends Controller
         $role->delete();
 
         request()->session()->flash('message-delete', "Successfully Delete Role");
+
+        return back();
+    }
+
+    public function permissionsAttach(Role $role, Permission $permission) {
+        $role->permissions()->attach($permission);
+
+        request()->session()->flash('message-updated', "Successfully Update Permissions");
+
+        return back();
+    }
+
+    public function permissionsDetach(Role $role, Permission $permission) {
+        $role->permissions()->detach($permission);
+
+        request()->session()->flash('message-updated', "Successfully Update Permissions");
 
         return back();
     }

@@ -9,3 +9,5 @@ Route::post("/", [RoleController::class, "store"])->name('admin.roles.store');
 Route::get("/{role}", [RoleController::class, "show"])->middleware('can:viewAny,\App\Models\Role')->name('admin.roles.show');
 Route::patch("/{role}", [RoleController::class, "patch"])->name('admin.roles.patch');
 Route::delete("/{role}", [RoleController::class, "destroy"])->middleware('can:delete,role')->name('admin.roles.destroy');
+Route::patch("/{role}/permissions/{permission}/attach", [RoleController::class, "permissionsAttach"])->name('admin.roles.permissions.attach');
+Route::patch("/{role}/permissions/{permission}/detach", [RoleController::class, "permissionsDetach"])->name('admin.roles.permissions.detach');
