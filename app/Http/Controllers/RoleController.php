@@ -25,10 +25,10 @@ class RoleController extends Controller
     }
 
     public function store() {
-        Role::create(request()->all());
+        $role = Role::create(request()->all());
 
         request()->session()->flash('message-create', "Successfully Create Role");
-        return back();
+        return $role;
     }
 
     public function patch(Role $role) {

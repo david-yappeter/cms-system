@@ -8,7 +8,7 @@
     aria-controls="collapsePages"
     >
         <i class="fas fa-fw fa-folder"></i>
-        <span>Pages</span>
+        <span>Post</span>
     </a>
     <div
     id="pages-collapse"

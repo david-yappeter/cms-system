@@ -42,6 +42,10 @@ class AdminController extends Controller
     }
 
     public function delete(Request $request, Post $post) {
+        $p = parse_url($post->post_image);
+        if($p["host"] === "localhost") {
+            unlink(substr($p["path"], 1));
+        }
         $post->delete();
         $request->session()->flash('message-delete', 'Post was deleted');
         return back();
