@@ -68,7 +68,7 @@
                     <tr>
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->user->name }}</td>
-                        <td><a href="{{ route('admin.post.edit', ['id'=>$post->id]) }}">{{ $post->title }}</a></td>
+                        <td><a href="{{ route('admin.post.edit', ['post'=>$post->id]) }}">{{ $post->title }}</a></td>
                         <td>
                           @if ($post->post_image) 
                           <i class="btn far fa-image" data-bs-toggle="modal" data-bs-target="#{{ $modal_id }}"></i>
@@ -79,9 +79,15 @@
                         </td>
                         <td>{{ $post->created_at->diffForHumans() }}</td>
                         <td>{{ $post->updated_at->diffForHumans() }}</td>
-                        <td>
+                        <td class="d-flex justify-content-evenly">
                           {{-- @if (auth()->user()->id === $post->user_id) --}}
                           @can('view', $post)
+                            <form method="get" action="{{ route('admin.post.edit', ['post'=>$post->id]) }}">
+                              <button class="btn btn-success">
+                                <i class="fa fa-pen" aria-hidden="true"></i>
+                              </button>
+                            </form>
+
                             <form method="post" action="{{ route("admin.post.delete", ["post"=>$post->id])  }}" enctype="multipart/form-data">
                               @csrf
                               @method("DELETE")

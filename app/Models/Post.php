@@ -29,4 +29,13 @@ class Post extends Model
         }
         return $value;
     }
+
+    public function deleteImage() {
+        if($this->post_image)  {
+            $p = parse_url($this->post_image);
+            if($p["host"] === "localhost") {
+                unlink(substr($p["path"], 1));
+            }
+        }
+    }
 }
